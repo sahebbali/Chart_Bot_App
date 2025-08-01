@@ -15,9 +15,12 @@ class BottomNavScreen extends StatefulWidget {
 class _BottomNavScreenState extends State<BottomNavScreen> {
   int currentIndex = 0;
   List<Widget> pages = [
-     ContactsScreen(),
-    const ChatsScreen(),
-    const MoreScreen()
+    ContactsScreen(),
+    const ChatScreen(
+      contactName: "John Doe",
+      demoMessage: "Hello! How are you?",
+    ),
+    const MoreScreen(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -25,10 +28,14 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
       bottomNavigationBar: BottomNavigationBar(
         items: const [
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.person_2_alt), label: "Contacts"),
+            icon: Icon(CupertinoIcons.person_2_alt),
+            label: "Contacts",
+          ),
           BottomNavigationBarItem(
-              icon: Icon(CupertinoIcons.chat_bubble_fill), label: "Chats"),
-          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More")
+            icon: Icon(CupertinoIcons.chat_bubble_fill),
+            label: "Chats",
+          ),
+          BottomNavigationBarItem(icon: Icon(Icons.more_horiz), label: "More"),
         ],
         currentIndex: currentIndex,
         type: BottomNavigationBarType.fixed,
@@ -37,20 +44,18 @@ class _BottomNavScreenState extends State<BottomNavScreen> {
             currentIndex = value;
           });
         },
-        showSelectedLabels: false,
+        showSelectedLabels: true,
         showUnselectedLabels: false,
         backgroundColor: Theme.of(context).brightness == Brightness.dark
             ? AppColors.bottomdark
             : AppColors.bottomlight,
         selectedIconTheme: IconThemeData(
-            color: Theme.of(context).brightness == Brightness.dark
-                ? AppColors.icondarkmode
-                : AppColors.iconlightmode),
+          color: Theme.of(context).brightness == Brightness.dark
+              ? AppColors.icondarkmode
+              : AppColors.iconlightmode,
+        ),
       ),
-      body: IndexedStack(
-        index: currentIndex,
-        children: pages,
-      ),
+      body: IndexedStack(index: currentIndex, children: pages),
     );
   }
 }

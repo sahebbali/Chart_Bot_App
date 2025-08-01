@@ -1,31 +1,51 @@
 import 'package:chatappui/domain/constants/appcolors.dart';
 import 'package:chatappui/repository/screens/widgets/uihelper.dart';
+import 'package:chatappui/repository/screens/chats/chatsscreen.dart';
 import 'package:flutter/material.dart';
 
 class ContactsScreen extends StatelessWidget {
   final TextEditingController searchController = TextEditingController();
   ContactsScreen({super.key});
 
-  final  arrContacts = [
+  final List<Map<String, String>> arrContacts = [
     {
       "img": "Frame 3293.png",
       "name": "Athalia Putri",
       "lastseen": "Last seen yesterday",
+      "message": "Hey! Are we still on for tomorrow?",
     },
-    {"img": "Avatar.png", "name": "Erlan Sadewa", "lastseen": "Online"},
+    {
+      "img": "Avatar.png",
+      "name": "Erlan Sadewa",
+      "lastseen": "Online",
+      "message": "Sure, I’ve sent you the files.",
+    },
     {
       "img": "Avatar (1).png",
       "name": "Midala Huera",
       "lastseen": "Last seen 3 hours ago",
+      "message": "Let’s catch up sometime soon!",
     },
-    {"img": "Avatar (2).png", "name": "Nafisa Gitari", "lastseen": "Online"},
-    {"img": "Frame 3293 (1).png", "name": "Raki Devon", "lastseen": "Online"},
+    {
+      "img": "Avatar (2).png",
+      "name": "Nafisa Gitari",
+      "lastseen": "Online",
+      "message": "Can you review the document I sent?",
+    },
+    {
+      "img": "Frame 3293 (1).png",
+      "name": "Raki Devon",
+      "lastseen": "Online",
+      "message": "I'll be there in 10 minutes.",
+    },
     {
       "img": "Avatar (3).png",
       "name": "Salsabila Akira",
       "lastseen": "Last seen 30 minutes ago",
+      "message": "Thanks! That helped a lot.",
     },
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -73,6 +93,20 @@ class ContactsScreen extends StatelessWidget {
                         context: context,
                         color: Color(0XFFADB5BD),
                       ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ChatScreen(
+                              contactName: arrContacts[index]["name"]
+                                  .toString(),
+                              demoMessage:
+                                  arrContacts[index]["message"]?.toString() ??
+                                  "No message",
+                            ),
+                          ),
+                        );
+                      },
                     ),
                   );
                 },
