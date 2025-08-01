@@ -17,47 +17,52 @@ class OnBoardingScreen extends StatelessWidget {
             : AppColors.scaffoldlight,
         actions: [
           IconButton(
-              onPressed: () {
-                BlocProvider.of<ThemeCubit>(context).toggletheme();
-              },
-              icon: Icon(Icons.dark_mode))
+            onPressed: () {
+              BlocProvider.of<ThemeCubit>(context).toggletheme();
+            },
+            icon: Icon(Icons.dark_mode),
+          ),
         ],
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            UiHelper.CustomImage(imgurl: "onboarding.png"),
-            SizedBox(
-              height: 20,
+            UiHelper.customimage(imgurl: "onboarding.png"),
+            SizedBox(height: 20),
+            UiHelper.customtext(
+              text: "Connect easily with",
+              fontsize: 24,
+              fontfamily: "bold",
+              fontweight: FontWeight.bold,
+              context: context,
             ),
-            UiHelper.CustomText(
-                text: "Connect easily with",
-                fontsize: 24,
-                fontfamily: "bold",
-                fontweight: FontWeight.bold,
-                context: context),
-            UiHelper.CustomText(
-                text: "your family and friends ",
-                fontsize: 24,
-                fontfamily: "bold",
-                fontweight: FontWeight.bold,
-                context: context),
-            UiHelper.CustomText(
-                text: "over countries.",
-                fontsize: 24,
-                fontfamily: "bold",
-                fontweight: FontWeight.bold,
-                context: context)
+            UiHelper.customtext(
+              text: "your family and friends ",
+              fontsize: 24,
+              fontfamily: "bold",
+              fontweight: FontWeight.bold,
+              context: context,
+            ),
+            UiHelper.customtext(
+              text: "over countries.",
+              fontsize: 24,
+              fontfamily: "bold",
+              fontweight: FontWeight.bold,
+              context: context,
+            ),
           ],
         ),
       ),
-      floatingActionButton: UiHelper.CustomButton(
-          buttonnname: "Start Messaging",
-          callback: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => LoginScreen()));
-          }),
+      floatingActionButton: UiHelper.custombutton(
+        buttonnname: "Start Messaging",
+        callback: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => LoginScreen()),
+          );
+        },
+      ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
